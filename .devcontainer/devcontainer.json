@@ -1,0 +1,21 @@
+{
+  "name": "Blog Project",
+  "service": "boot",
+  "dockerComposeFile": "../.app/compose.yml",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "octref.vetur",
+        "hollowtree.vue-snippets",
+        "sdras.vue-vscode-snippets",
+        "esbenp.prettier-vscode",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vmware.vscode-boot-dev-pack",
+        "vmware.vscode-spring-boot",
+        "vscjava.vscode-spring-initializr",
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  }
+}

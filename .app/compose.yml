@@ -1,0 +1,52 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: db
+    restart: always
+    ports:
+      - 13306:3306
+    volumes:
+      - ./mariadb/conf.d:/etc/mysql/conf.d:ro
+      - ./mariadb/data:/var/lib/mysql:rw
+      - ./mariadb/initdb.d:/docker-entrypoint-initdb.d:ro
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=edu
+      - MYSQL_USER=folder
+      - MYSQL_PASSWORD=1234
+      - TZ=Asia/Seoul
+      - LC_ALL:en_US.UTF-8
+  boot:
+    container_name: boot
+    image: gradle:jdk19
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 8080:8080
+    volumes:
+      - ../boot:/workspace
+    environment:
+      - TZ=Asia/Seoul
+      - LC_ALL:en_US.UTF-8
+    command: sleep infinity
+  vue:
+    container_name: vue
+    build:
+      context: .
+      dockerfile: dockerfile
+    restart: always
+    ports:
+      - 80:8800
+    volumes:
+      - ../vue:/workspace
+    environment:
+      - PORT=8800
+      - TZ=Asia/Seoul
+      - LC_ALL:en_US.UTF-8
+    command: sleep infinity
+
