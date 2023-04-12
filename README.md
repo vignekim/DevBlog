@@ -21,3 +21,14 @@ yarn serve
 ```
 java --version
 ```
+
+### Spring Project
+> * [Spring initializr](https://start.spring.io/)
+> * [Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html)
+
+
+----
+### YouTube Link
+
+###### 1. DevBlog 소개 [SpringBoot Vue]
+[![Video Label](http://img.youtube.com/vi/oZcTz9lYOqw/0.jpg)](https://youtu.be/oZcTz9lYOqw)

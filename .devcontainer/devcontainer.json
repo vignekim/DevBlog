@@ -1,6 +1,6 @@
 {
   "name": "Blog Project",
-  "service": "boot",
+  "service": "vue",
   "dockerComposeFile": "../.app/compose.yml",
   "workspaceFolder": "/workspace",
   "customizations": {

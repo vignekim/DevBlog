@@ -41,7 +41,7 @@ services:
       dockerfile: dockerfile
     restart: always
     ports:
-      - 80:8800
+      - 8800:8800
     volumes:
       - ../vue:/workspace
     environment:
