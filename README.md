@@ -35,3 +35,7 @@ java --version
 
 ###### 2. DevBlog 프로젝트 생성 [SpringBoot Vue]
 [![Video Label](http://img.youtube.com/vi/9X4LIJJ4SlQ/0.jpg)](https://youtu.be/9X4LIJJ4SlQ)
+
+###### 3. DevBlog 테이블 정의 소개 [DDL ERD]
+[![Video Label](http://img.youtube.com/vi/mpc99M_r_2M/0.jpg)](https://youtu.be/mpc99M_r_2M)
+
