@@ -32,3 +32,6 @@ java --version
 
 ###### 1. DevBlog 소개 [SpringBoot Vue]
 [![Video Label](http://img.youtube.com/vi/oZcTz9lYOqw/0.jpg)](https://youtu.be/oZcTz9lYOqw)
+
+###### 2. DevBlog 프로젝트 생성 [SpringBoot Vue]
+[![Video Label](http://img.youtube.com/vi/9X4LIJJ4SlQ/0.jpg)](https://youtu.be/9X4LIJJ4SlQ)
