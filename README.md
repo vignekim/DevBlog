@@ -39,5 +39,5 @@ java --version
 ###### 3. DevBlog 테이블 정의 소개 [DDL ERD]
 [![Video Label](http://img.youtube.com/vi/mpc99M_r_2M/0.jpg)](https://youtu.be/mpc99M_r_2M)
 
-###### 4. DevBlog 화면 정의 [SpringBoot Vue]
+###### 4. DevBlog 화면 정의 소개 [SpringBoot Vue]
 [![Video Label](http://img.youtube.com/vi/oxW46UYkBFs/0.jpg)](https://youtu.be/oxW46UYkBFs)

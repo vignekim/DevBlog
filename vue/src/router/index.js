@@ -1,11 +1,50 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/User/Create',
+    name: 'CreateView',
+    component: () => import(/* webpackChunkName: "user" */ '@/views/user/CreateView.vue')
+  },
+  {
+    path: '/User/Info/:userNo',
+    name: 'SelectView',
+    component: () => import(/* webpackChunkName: "user" */ '@/views/user/SelectView.vue')
+  },
+  {
+    path: '/User/edit/:userNo',
+    name: 'EditView',
+    component: () => import(/* webpackChunkName: "user" */ '@/views/user/EditView.vue')
+  },
+  {
+    path: '/Notice/Create',
+    name: 'CreateNotice',
+    component: () => import(/* webpackChunkName: "notice" */ '@/views/notice/CreateNotice.vue')
+  },
+  {
+    path: '/Notice/Detail/:noticeNo',
+    name: 'DetailNotice',
+    component: () => import(/* webpackChunkName: "notice" */ '@/views/notice/DetailNotice.vue')
+  },
+  {
+    path: '/Login',
+    name: 'LoginView',
+    component: () => import('@/views/LoginView.vue')
+  },
+  {
+    path: "/notFound",
+    name: "notFound",
+    component: () => import('@/views/NotFound.vue')
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: "/notFound"
   }
 ]
 

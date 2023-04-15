@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>환영합니다.</h1>
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -11,7 +9,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h1 {
-  text-align: center;
-}
+
 </style>
