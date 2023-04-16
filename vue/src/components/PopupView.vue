@@ -1,7 +1,7 @@
 <template>
   <div class="popup" :class="{active: show == 1, nonActive: show == 2}">
     <div id="box" class="body-flex">
-      <h1><span @click="info">{{user}}</span>님 안녕하세요</h1>
+      <h1><span @click="info">{{user.name}}</span>님 안녕하세요</h1>
       <h2>멋진 하루 입니다.</h2>
     </div>
   </div>
@@ -12,7 +12,7 @@ export default {
   name: 'PopupView',
   props: {
     show: Number,
-    user: String
+    user: Object
   },
   methods: {
     info() {

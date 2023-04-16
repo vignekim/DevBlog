@@ -4,20 +4,26 @@
   </main>
 </template>
 
-<script>
-export default {};
-</script>
-
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   min-height: 80vh;
-  margin: 90px 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   h1 {
     font-size: 38px;
+  }
+}
+@media (max-width: 1000px) {
+  main {
+    h1 {
+      font-size: 28px;
+    }
+  }
+}
+@media (max-width: 650px) {
+  main {
+    h1 {
+      font-size: 21px;
+    }
   }
 }
 </style>
