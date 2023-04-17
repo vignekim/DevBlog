@@ -24,12 +24,14 @@ public class NoticeController {
   @PostMapping("/List")
   public List<?> list() {
     List<Notice> list = new ArrayList<Notice>();
-    Notice notice = new Notice();
-    notice.setNo(1);
-    notice.setTitle("연습용 1");
-    notice.setRegDate(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-    notice.setDesc("스타일리시한 세 가지 케이스 색상. 건강과 피트니스에 대한 통찰을 제공하는 강력한 센서. 혁신적인 안전 기능. 끊김 없이 소통을 유지하는 편리한 방법. 여기에 한층 향상된 성능을 위한 더 빠른 듀얼 코어 프로세서까지. 수많은 기능들로 가득 찬 Apple Watch SE, 그 어느 때보다도 탁월한 가성비를 자랑합니다.");
-    list.add(notice);
+    for(int i = 0; i <= 3; i++) {
+      Notice notice = new Notice();
+      notice.setNo(i);
+      notice.setTitle("연습용 " + i);
+      notice.setRegDate(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+      notice.setDesc("스타일리시한 세 가지 케이스 색상. 건강과 피트니스에 대한 통찰을 제공하는 강력한 센서. 혁신적인 안전 기능. 끊김 없이 소통을 유지하는 편리한 방법. 여기에 한층 향상된 성능을 위한 더 빠른 듀얼 코어 프로세서까지. 수많은 기능들로 가득 찬 Apple Watch SE, 그 어느 때보다도 탁월한 가성비를 자랑합니다.");
+      list.add(notice);
+    }
     return list;
   }
 

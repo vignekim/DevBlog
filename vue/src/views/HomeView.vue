@@ -3,10 +3,10 @@
     <div class="btn-group" v-if="account">
       <button type="button" class="btn" @click="notice">글작성</button>
     </div>
-    <div class="list" v-if="state == 1">
+    <div class="list">
       <HomeList :list="list"/>
     </div>
-    <div class="block" v-if="state == 2">
+    <div class="block" v-if="state == 1">
       <h1>목록이 없습니다.</h1>
     </div>
   </main>
@@ -53,6 +53,7 @@ main {
   }
   .list {
     display: flex;
+    flex-flow: row wrap;
     width: 100%;
     min-height: 40vh;
   }

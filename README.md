@@ -44,3 +44,6 @@ java --version
 
 ###### 5. DevBlog 화면 코드 소개 [SpringBoot Vue]
 [![Video Label](http://img.youtube.com/vi/Uk7plVujni0/0.jpg)](https://youtu.be/Uk7plVujni0)
+
+###### 6. DevBlog 진행사항 살펴보기 [SpringBoot Vue]
+[![Video Label](http://img.youtube.com/vi/2fWKPBKV30w/0.jpg)](https://youtu.be/2fWKPBKV30w)

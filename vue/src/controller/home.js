@@ -7,6 +7,7 @@ const data = () => {
   const resultData = {}
 
   //resultData.list = sampleData()
+  //resultData.state = 1
   resultData.list = []
   resultData.state = 0
   const user = localStorage.getItem('user');
@@ -19,7 +20,7 @@ const data = () => {
 const sampleData = () => {
   const list = []
   const toDay = useDate(new Date())
-  for(var i = 1; i <= 2; i++) {
+  for(var i = 1; i <= 30; i++) {
     let row = {}
     row.no = i
     row.img = (i%2 == 1)? '/account.svg' : 'logo.png'
@@ -57,15 +58,16 @@ const useController = {
   created() {
     database()
       .then((res) => {
-        const row = res
-        row[0].img = (row.no % 2 == 1)? '/account.svg' : 'logo.png'
-        row[0].count = 0
-        this.list = row
-        this.state = 1
+        res.forEach(row => {
+          row.img = (row.no % 2 == 1)? '/account.svg' : 'logo.png'
+          row.count = 0
+          this.list[row.no] = row
+        });
+        this.state = 0
       })
       .catch((err) => {
         console.log(err)
-        this.state = 2
+        this.state = 1
       })
   },
   mounted() {},
