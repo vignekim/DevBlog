@@ -18,8 +18,8 @@ const methods = {
       .then((res) => {
         if(res.data.state) {
           const user = {
-            name: res.data.user.name,
-            no: res.data.user.no
+            name: res.data.result.name,
+            no: res.data.result.no
           }
           localStorage.setItem('user', encode(user));
           window.location.href = '/'

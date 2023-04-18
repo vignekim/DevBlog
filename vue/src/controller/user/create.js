@@ -15,12 +15,12 @@ const data = () => {
 const methods = {
   save() {
     const url = process.env.VUE_APP_BASEURL + '/User/save'
-    axios.post(url, this.user)
+    axios.put(url, this.user)
       .then((res) => {
         if(res.data.state) {
           const user = {
-            name: res.data.user.name,
-            no: res.data.user.no
+            name: res.data.result.name,
+            no: res.data.result.no
           }
           localStorage.setItem('user', encode(user));
           window.location.href = '/'

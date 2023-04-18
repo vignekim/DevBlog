@@ -15,7 +15,9 @@ const methods = {
     const url = process.env.VUE_APP_BASEURL + '/Notice/save'
     axios.put(url, this.notice)
       .then((res) => {
-        router.push({ name: 'DetailNotice', params: {noticeNo: res.data.no} })
+        if(res.data.state) {
+          router.push({ name: 'DetailNotice', params: {noticeNo: res.data.result.no} })
+        }
       })
       .catch((err) => console.log(err))
   },

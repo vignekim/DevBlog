@@ -17,7 +17,7 @@ const database = (noticeNo) => {
     const url = process.env.VUE_APP_BASEURL + '/Notice/findById'
     const params = {no: noticeNo}
     axios.post(url, params)
-      .then((data) => resolve(data))
+      .then((res) => resolve(res.data))
       .catch((err) => reject(err))
   })
 }
@@ -38,7 +38,15 @@ const methods = {
     }
   },
   del() {
-    this.cancel()
+    const url = process.env.VUE_APP_BASEURL + '/Notice/deleteById'
+    const params = {no: this.notice.no}
+    axios.delete(url, {params})
+      .then((res) => {
+        if(res.data.state) {
+          this.cancel()
+        }
+      })
+      .catch((err) => console.log(err))
   },
   cancel() {
     router.push({ name: 'HomeView' })
@@ -54,10 +62,10 @@ const useController = {
   setup() {},
   created() {
     database(this.$route.params.noticeNo)
-      .then((result) => {
-        if(result.data.state) {
-          this.notice = result.data
-          useRead.data = decode(result.data.content)
+      .then((res) => {
+        if(res.state) {
+          this.notice = res.result
+          useRead.data = decode(res.result.content)
           this.editor = new EditorJS(useRead)
         }
         else this.cancel()

@@ -42,7 +42,7 @@ const methods = {
     axios.post(url, formData)
       .then((res) => {
         if(res.data.state) {
-          const path = `${url}?url=${res.data.url}&mediaType=${res.data.mediaType}`
+          const path = `${url}?url=${res.data.result.url}&mediaType=${res.data.result.mediaType}`
           const imagePreview = document.querySelector('.user');
           imagePreview.setAttribute('src', path)
         }
@@ -61,7 +61,8 @@ const methods = {
   },
   del() {
     const url = process.env.VUE_APP_BASEURL + '/User/delteById'
-    axios.post(url, this.user)
+    const params = {no: this.user.no}
+    axios.delete(url, {params})
       .then((res) => {
         if(res.data.state) {
           localStorage.removeItem('user');
@@ -90,7 +91,7 @@ const useController = {
       axios.post(url, this.user)
         .then((res) => {
           if(res.data.state) {
-            this.user = res.data.user
+            this.user = res.data.result
             this.user.img = '/account.svg'
           }
         })

@@ -9,7 +9,7 @@ const data = () => {
   //resultData.list = sampleData()
   //resultData.state = 1
   resultData.list = []
-  resultData.state = 0
+  resultData.state = true
   const user = localStorage.getItem('user');
   if(user) {resultData.account = true}
   else {resultData.account = false}
@@ -58,16 +58,17 @@ const useController = {
   created() {
     database()
       .then((res) => {
-        res.forEach(row => {
-          row.img = (row.no % 2 == 1)? '/account.svg' : 'logo.png'
-          row.count = 0
-          this.list[row.no] = row
-        });
-        this.state = 0
+        if(res.state) {
+          res.result.forEach(row => {
+            row.img = (row.no % 2 == 1)? '/account.svg' : 'logo.png'
+            row.count = 0
+            this.list[row.no] = row
+          });
+          if(res.result.length > 0) this.state = false
+        }
       })
       .catch((err) => {
         console.log(err)
-        this.state = 1
       })
   },
   mounted() {},

@@ -37,7 +37,7 @@ const useController = {
       axios.post(url, this.user)
         .then((res) => {
           if(res.data.state) {
-            this.user = res.data.user
+            this.user = res.data.result
             this.user.img = '/account.svg'
           }
         })
