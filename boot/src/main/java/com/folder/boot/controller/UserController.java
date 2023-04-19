@@ -13,37 +13,40 @@ import org.springframework.web.bind.annotation.RestController;
 import com.folder.boot.component.UserComponent;
 import com.folder.boot.dto.ResponseResult;
 import com.folder.boot.dto.User;
+import com.folder.boot.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/User")
 public class UserController {
 
-  @Autowired UserComponent userComponent;
+  //@Autowired UserComponent userComponent;
+  @Autowired UserService userService;
 
   @PostMapping("/Login")
   public ResponseResult login(@RequestBody User user) {
-    return userComponent.login(user);
+    System.out.println(user);
+    return userService.login(user);
   }
 
   @PostMapping("/findById")
   public ResponseResult findById(@RequestBody User user) {
-    return userComponent.findById(user);
+    return userService.findById(user);
   }
 
   @PostMapping("/editById")
   public ResponseResult editById(@RequestBody User user) {
-    return userComponent.editById(user);
+    return userService.editById(user);
   }
 
-  @DeleteMapping("/delteById")
-  public ResponseResult delteById(@RequestParam("no") int no) {
-    return userComponent.delteById(no);
+  @DeleteMapping("/deleteById")
+  public ResponseResult deleteById(@RequestParam("no") int no) {
+    return userService.deleteById(no);
   }
 
   @PutMapping("/save")
   public ResponseResult save(@RequestBody User user) {
-    return userComponent.save(user);
+    return userService.save(user);
   }
 
 }

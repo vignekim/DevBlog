@@ -50,3 +50,6 @@ java --version
 
 ###### 7. DevBlog Source Tree [SpringBoot Vue]
 [![Video Label](http://img.youtube.com/vi/vIPpkJu4acU/0.jpg)](https://youtu.be/vIPpkJu4acU)
+
+###### 8. DevBlog Boot 기능 구현 1부 [SpringBoot Vue]
+[![Video Label](http://img.youtube.com/vi/I9eJuQevfD0/0.jpg)](https://youtu.be/I9eJuQevfD0)

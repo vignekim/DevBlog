@@ -60,7 +60,7 @@ const methods = {
       .catch((err) => console.log(err))
   },
   del() {
-    const url = process.env.VUE_APP_BASEURL + '/User/delteById'
+    const url = process.env.VUE_APP_BASEURL + '/User/deleteById'
     const params = {no: this.user.no}
     axios.delete(url, {params})
       .then((res) => {

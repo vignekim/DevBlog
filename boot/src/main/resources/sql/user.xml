@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.folder.boot.mapper.UserMapper">
+
+<select id="login" parameterType="com.folder.boot.dto.User" resultType="com.folder.boot.dto.User">
+  SELECT no, name
+    FROM user
+   WHERE del = false
+     and email = #{email}
+     and pwd = #{pwd}
+</select>
+
+<select id="findById" parameterType="com.folder.boot.dto.User" resultType="com.folder.boot.dto.User">
+  SELECT *
+    FROM user
+   WHERE del = false
+     and no = #{no}
+</select>
+
+<update id="editById" parameterType="com.folder.boot.dto.User">
+  UPDATE user SET
+		pwd = #{pwd}
+	 WHERE no = #{no}
+</update>
+
+<update id="deleteById" parameterType="Integer">
+  UPDATE user SET
+	   del = true
+	 WHERE no = #{no}
+</update>
+
+<insert id="save" parameterType="com.folder.boot.dto.User">
+  INSERT INTO user
+			(`name`, `email`, `pwd`)
+		VALUE
+			(#{name}, #{email}, #{pwd})
+
+  <selectKey keyProperty="no" resultType="int" order="AFTER">
+    SELECT LAST_INSERT_ID() AS no
+  </selectKey>
+</insert>
+
+</mapper>
