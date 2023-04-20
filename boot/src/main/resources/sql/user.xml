@@ -33,7 +33,7 @@
 
 <insert id="save" parameterType="com.folder.boot.dto.User">
   INSERT INTO user
-			(`name`, `email`, `pwd`)
+			(name, email, pwd)
 		VALUE
 			(#{name}, #{email}, #{pwd})
 

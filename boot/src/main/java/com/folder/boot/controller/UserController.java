@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.folder.boot.component.UserComponent;
 import com.folder.boot.dto.ResponseResult;
 import com.folder.boot.dto.User;
 import com.folder.boot.service.UserService;
@@ -25,7 +24,6 @@ public class UserController {
 
   @PostMapping("/Login")
   public ResponseResult login(@RequestBody User user) {
-    System.out.println(user);
     return userService.login(user);
   }
 
