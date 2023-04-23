@@ -40,4 +40,5 @@ java --version
 > * [8. Boot 기능 구현 1부](https://youtu.be/I9eJuQevfD0)
 > * [9. Controller 단위 테스트](https://youtu.be/hiPMGrFPQgU)
 > * [10. Service & DAO 단위 테스트](https://youtu.be/iE30vOGdRPM)
-> * [11. DevBlog Token 소개](https://youtu.be/lnnCijQuTnQ)
+> * [11. Token 소개](https://youtu.be/lnnCijQuTnQ)
+> * [12. Token 구조 및 흐름](https://youtu.be/i5rp3mvFvLA)
