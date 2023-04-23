@@ -2,7 +2,7 @@
 DevContainer + Blog Project
 
 ### Architecture of Blog Project
-<img src="./image/tools.png" width="1000"></img>
+<img src="./image/DevBlog.gif" width="1000"></img>
 
 ###### Vue Project 만들기
 
