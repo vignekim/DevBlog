@@ -42,3 +42,4 @@ java --version
 > * [10. Service & DAO 단위 테스트](https://youtu.be/iE30vOGdRPM)
 > * [11. Token 소개](https://youtu.be/lnnCijQuTnQ)
 > * [12. Token 구조 및 흐름](https://youtu.be/i5rp3mvFvLA)
+> * [13. Token 생성 및 테스트](https://youtu.be/Nn9aXiyOnwk)
