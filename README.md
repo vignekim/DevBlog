@@ -43,3 +43,4 @@ java --version
 > * [11. Token 소개](https://youtu.be/lnnCijQuTnQ)
 > * [12. Token 구조 및 흐름](https://youtu.be/i5rp3mvFvLA)
 > * [13. Token 생성 및 테스트](https://youtu.be/Nn9aXiyOnwk)
+> * [14. Token 검증 및 테스트](https://youtu.be/W4xQVo82hhE)
