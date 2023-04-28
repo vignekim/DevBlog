@@ -37,4 +37,9 @@ CREATE OR REPLACE TABLE NOTICE (
 	FOREIGN KEY(`userNo`) REFERENCES USER(`no`)
 );
 
+INSERT INTO user
+	(name, email, pwd)
+VALUE
+	('folder', 'folder@email.com', '1234');
+
 commit;

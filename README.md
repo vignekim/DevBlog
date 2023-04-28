@@ -45,3 +45,5 @@ java --version
 > * [13. Token 생성 및 테스트](https://youtu.be/Nn9aXiyOnwk)
 > * [14. Token 검증 및 테스트](https://youtu.be/W4xQVo82hhE)
 > * [15. RSA 비대칭키 소개](https://youtu.be/fNWFtAFpiuI)
+> * [16. RSA 적용하기](https://youtu.be/R29cAazcKqA)
+> * [17. JWT 코드 정리 및 마무리](https://youtu.be/wAcYFsyddrg)
