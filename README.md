@@ -47,3 +47,5 @@ java --version
 > * [15. RSA 비대칭키 소개](https://youtu.be/fNWFtAFpiuI)
 > * [16. RSA 적용하기](https://youtu.be/R29cAazcKqA)
 > * [17. JWT 코드 정리 및 마무리](https://youtu.be/wAcYFsyddrg)
+> * [18. Cloud 소개](https://youtu.be/mlJWoXJm034)
+> * [19. Gateway 설정하기](https://youtu.be/ZAsjRGkzbC8)
