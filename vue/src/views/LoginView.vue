@@ -5,11 +5,11 @@
       <div class="d-left">
         <div class="form-group">
           <label for="email" class="form-label">이메일:</label>
-          <input type="email" class="form-control" placeholder="이메일를 입력하세요." name="email" v-model="user.email"/>
+          <input type="email" class="form-control" placeholder="이메일를 입력하세요." name="email" autocomplete="off" v-model="user.email"/>
         </div>
         <div class="form-group">
           <label for="pwd" class="form-label">비밀번호:</label>
-          <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." name="pwd" v-model="user.pwd"/>
+          <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." name="pwd" autocomplete="off" v-model="user.pwd"/>
         </div>
       </div>
       <div class="d-right">

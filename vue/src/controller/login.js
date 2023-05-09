@@ -16,14 +16,18 @@ const methods = {
     const url = process.env.VUE_APP_BASEURL + '/User/Login'
     axios.post(url, this.user)
       .then((res) => {
+        //console.log(res)
+
         if(res.data.state) {
           const user = {
             name: res.data.result.name,
             no: res.data.result.no
           }
-          localStorage.setItem('user', encode(user));
+          localStorage.setItem('user', encode(user))
+          localStorage.setItem('token', res.data.result.token)
           window.location.href = '/'
         }
+
       })
       .catch((err) => console.log(err))
   },

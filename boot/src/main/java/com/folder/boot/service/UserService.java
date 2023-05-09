@@ -3,24 +3,36 @@ package com.folder.boot.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.folder.boot.dto.ResponseResult;
 import com.folder.boot.dto.User;
+import com.folder.boot.security.TokenGenerator;
 import com.folder.boot.dao.UserDao;
 
 @Service
 public class UserService {
 
   @Autowired UserDao userDao;
+  @Autowired TokenGenerator tokenGenerator;
   private ResponseResult responseResult;
 
   public ResponseResult login(User user) {
     responseResult = new ResponseResult();
+    responseResult.setState(false);
     user = userDao.login(user);
     if(user != null) {
-      responseResult.setState(true);
-      responseResult.setResult(user);
-    } else {
-      responseResult.setState(false);
+      //responseResult.setResult(user);
+      ResponseResult tokenResult = tokenGenerator.setJwtToken(user);
+      if(tokenResult.isState()) {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("no", user.getNo());
+        resultMap.put("name", user.getName());
+        resultMap.put("token", tokenResult.getResult());
+        responseResult.setResult(resultMap);
+        responseResult.setState(true);
+      }
     }
     return responseResult;
   }
