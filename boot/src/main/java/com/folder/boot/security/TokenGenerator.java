@@ -28,6 +28,7 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -69,13 +70,18 @@ public class TokenGenerator {
     return responseResult;
   }
 
-  public Map<String, Object> getJwtInfo(String header) {
-    Map<String, Object> resultMap = new HashMap<>();
-    String token = getTokenFromHeader(header);
-    resultMap.put("state", true);
-    resultMap.put("header", getHeaderFromToken(token));
-    resultMap.put("payload", getUserFromToken(token));
-    return resultMap;
+  public ResponseResult getJwtInfo(HttpServletRequest request) {
+    ResponseResult responseResult = new ResponseResult();
+    responseResult.setState(false);
+    String header = request.getHeader(AUTH_HEADER);
+    if(isValidToken(header)) {
+      if(header != null || ("").equals(header)){
+        String token = getTokenFromHeader(header);
+        responseResult.setState(true);
+        responseResult.setResult(getUserFromToken(token));
+      }
+    }
+    return responseResult;
   }
 
   public boolean isValidToken(String header) {
@@ -134,7 +140,7 @@ public class TokenGenerator {
       .setIssuer("DevBlog")
       .setSubject("User")
       .setAudience(keyUtils.encodeContent(setContent(user)))
-      .setExpiration(createExpiredDate(5))
+      .setExpiration(createExpiredDate(60))
       .setIssuedAt(Calendar.getInstance().getTime());
   }
 

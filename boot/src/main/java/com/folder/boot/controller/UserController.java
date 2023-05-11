@@ -14,6 +14,8 @@ import com.folder.boot.dto.ResponseResult;
 import com.folder.boot.dto.User;
 import com.folder.boot.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/User")
@@ -28,14 +30,24 @@ public class UserController {
   }
 
   @PostMapping("/findById")
+  public ResponseResult findById(HttpServletRequest request) {
+    return userService.findById(request);
+  }
+/*
   public ResponseResult findById(@RequestBody User user) {
     return userService.findById(user);
   }
+*/
 
   @PostMapping("/editById")
+  public ResponseResult editById(@RequestBody User user, HttpServletRequest request) {
+    return userService.editById(user, request);
+  }
+/*
   public ResponseResult editById(@RequestBody User user) {
     return userService.editById(user);
   }
+ */
 
   @DeleteMapping("/deleteById")
   public ResponseResult deleteById(@RequestParam("no") int no) {

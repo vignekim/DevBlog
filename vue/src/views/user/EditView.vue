@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <label for="pwd" class="form-label">비밀번호:</label>
-        <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." name="pwd" required :value="user.pwd"/>
+        <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." name="pwd" required v-model="user.pwd"/>
       </div>
     </form>
     <div class="d-flex">

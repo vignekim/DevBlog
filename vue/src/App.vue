@@ -56,7 +56,7 @@ export default {
       window.location.href = '/'
     },
     info() {
-      this.$router.push({ name: 'SelectView', params: {userNo: this.user.no} })
+      this.$router.push({ name: 'SelectView' })
     },
     active() {
       if(this.show === 2 || this.show === 0) this.show = 1

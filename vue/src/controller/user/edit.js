@@ -1,6 +1,7 @@
 import router from '@/router'
 import axios from 'axios'
 import { decode } from '@/util/Base64'
+import useAxios from '@/util/UseAxios'
 
 const data = () => {
   const resultData = {}
@@ -51,10 +52,12 @@ const methods = {
   },
   save() {
     const url = process.env.VUE_APP_BASEURL + '/User/editById'
-    axios.post(url, this.user)
+    useAxios.post(url, this.user)
       .then((res) => {
         if(res.data.state) {
-          router.push({ name: 'SelectView', params: {userNo: this.user.no} })
+          router.push({ name: 'SelectView' })
+        } else {
+          alert(res.data.message)
         }
       })
       .catch((err) => console.log(err))
@@ -84,11 +87,12 @@ const useController = {
   data() { return data() },
   setup() {},
   created() {
-    const user = localStorage.getItem('user');
-    if(user) {
-      this.user = decode(user)
+    //const user = localStorage.getItem('user');
+    //if(user) {
+      //this.user = decode(user)
       const url = process.env.VUE_APP_BASEURL + '/User/findById'
-      axios.post(url, this.user)
+      //axios.post(url, this.user)
+      useAxios.post(url)
         .then((res) => {
           if(res.data.state) {
             this.user = res.data.result
@@ -96,8 +100,8 @@ const useController = {
           }
         })
         .catch((err) => console.log(err))
-    }
-    else this.cancel()
+    //}
+    //else this.cancel()
   },
   mounted() {},
   unmounted() {}

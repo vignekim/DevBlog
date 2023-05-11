@@ -9,6 +9,9 @@ import java.util.Map;
 import com.folder.boot.dto.ResponseResult;
 import com.folder.boot.dto.User;
 import com.folder.boot.security.TokenGenerator;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import com.folder.boot.dao.UserDao;
 
 @Service
@@ -49,6 +52,21 @@ public class UserService {
     return responseResult;
   }
 
+  public ResponseResult findById(HttpServletRequest request){
+    responseResult = new ResponseResult();
+    responseResult.setState(false);
+    ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
+    if(tokenResult.isState()){
+      User user = (User) tokenResult.getResult();
+      user = userDao.findById(user);
+      if(user != null) {
+        responseResult.setState(true);
+        responseResult.setResult(user);
+      }
+    }
+    return responseResult;
+  }
+
   public ResponseResult editById(User user) {
     responseResult = new ResponseResult();
     int state = userDao.editById(user);
@@ -58,6 +76,26 @@ public class UserService {
     } else {
       responseResult.setState(false);
       responseResult.setMessage("사용자 수정이 실패 하였습니다.");
+    }
+    return responseResult;
+  }
+
+  public ResponseResult editById(User user, HttpServletRequest request) {
+    responseResult = new ResponseResult();
+    responseResult.setState(false);
+    ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
+    if(tokenResult.isState()){
+      User tokenUser = (User) tokenResult.getResult();
+      if(tokenUser.getNo() == user.getNo() && tokenUser.getEmail().equals(user.getEmail())) {
+        int state = userDao.editById(user);
+        if(state == 1) {
+          responseResult.setState(true);
+          responseResult.setMessage("사용자 수정이 성공 하였습니다.");
+        } else {
+          responseResult.setState(false);
+          responseResult.setMessage("사용자 수정이 실패 하였습니다.");
+        }
+      }
     }
     return responseResult;
   }

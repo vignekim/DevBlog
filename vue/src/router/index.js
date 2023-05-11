@@ -12,12 +12,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "user" */ '@/views/user/CreateView.vue')
   },
   {
-    path: '/User/Info/:userNo',
+    path: '/User/Info',
     name: 'SelectView',
     component: () => import(/* webpackChunkName: "user" */ '@/views/user/SelectView.vue')
   },
   {
-    path: '/User/edit/:userNo',
+    path: '/User/edit',
     name: 'EditView',
     component: () => import(/* webpackChunkName: "user" */ '@/views/user/EditView.vue')
   },
