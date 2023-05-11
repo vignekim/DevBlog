@@ -52,3 +52,5 @@ java --version
 > * [20. User Token 소개](https://youtu.be/amVh7Sl-ieM)
 > * [21. Login & Logout](https://youtu.be/59cUc0evZDg)
 > * [22. User Info 소개](https://youtu.be/Jkbf5co3Ftw)
+> * [23. User Info 적용](https://youtu.be/5Ia1THJ1KSs)
+> * [24. User Edit 적용](https://youtu.be/nUHTkGe5Te4)
