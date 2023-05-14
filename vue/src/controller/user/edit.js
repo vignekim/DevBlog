@@ -64,11 +64,13 @@ const methods = {
   },
   del() {
     const url = process.env.VUE_APP_BASEURL + '/User/deleteById'
-    const params = {no: this.user.no}
-    axios.delete(url, {params})
+    //const params = {no: this.user.no}
+    //axios.delete(url, {params})
+    useAxios.delete(url)
       .then((res) => {
         if(res.data.state) {
           localStorage.removeItem('user');
+          localStorage.removeItem('token');
           window.location.href = '/'
         }
       })

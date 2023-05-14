@@ -50,9 +50,14 @@ public class UserController {
  */
 
   @DeleteMapping("/deleteById")
+  public ResponseResult deleteById(HttpServletRequest request) {
+    return userService.deleteById(request);
+  }
+/*
   public ResponseResult deleteById(@RequestParam("no") int no) {
     return userService.deleteById(no);
   }
+ */
 
   @PutMapping("/save")
   public ResponseResult save(@RequestBody User user) {

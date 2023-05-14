@@ -113,6 +113,24 @@ public class UserService {
     return responseResult;
   }
 
+  public ResponseResult deleteById(HttpServletRequest request) {
+    responseResult = new ResponseResult();
+    responseResult.setState(false);
+    ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
+    if(tokenResult.isState()){
+      User user = (User) tokenResult.getResult();
+      int state = userDao.deleteById(user.getNo());
+      if(state == 1) {
+        responseResult.setState(true);
+        responseResult.setMessage("사용자 삭제가 성공 하였습니다.");
+      } else {
+        responseResult.setState(false);
+        responseResult.setMessage("사용자 삭제가 실패 하였습니다.");
+      }
+    }
+    return responseResult;
+  }
+
   public ResponseResult save(User user) {
     responseResult = new ResponseResult();
     user = userDao.save(user);

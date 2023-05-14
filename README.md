@@ -54,3 +54,4 @@ java --version
 > * [22. User Info 소개](https://youtu.be/Jkbf5co3Ftw)
 > * [23. User Info 적용](https://youtu.be/5Ia1THJ1KSs)
 > * [24. User Edit 적용](https://youtu.be/nUHTkGe5Te4)
+> * [25. User Delete 적용](https://youtu.be/g517yoiTuK4)

@@ -26,6 +26,8 @@ const methods = {
           localStorage.setItem('user', encode(user))
           localStorage.setItem('token', res.data.result.token)
           window.location.href = '/'
+        } else {
+          alert("사용자의 정보가 존재하지 않습니다.");
         }
 
       })
