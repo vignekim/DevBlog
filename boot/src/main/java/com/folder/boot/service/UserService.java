@@ -135,10 +135,21 @@ public class UserService {
     responseResult = new ResponseResult();
     user = userDao.save(user);
     if(user.getNo() > 0) {
-      responseResult.setState(true);
-      responseResult.setResult(user);
+
+      ResponseResult tokenResult = tokenGenerator.setJwtToken(user);
+      if(tokenResult.isState()) {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("no", user.getNo());
+        resultMap.put("name", user.getName());
+        resultMap.put("token", tokenResult.getResult());
+        responseResult.setResult(resultMap);
+        responseResult.setState(true);
+        responseResult.setMessage("사용자 가입이 성공 하였습니다.");
+      }
+
     } else {
       responseResult.setState(false);
+      responseResult.setMessage("사용자 가입이 실패 하였습니다.");
     }
     return responseResult;
   }

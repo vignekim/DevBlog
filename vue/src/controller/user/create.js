@@ -23,7 +23,10 @@ const methods = {
             no: res.data.result.no
           }
           localStorage.setItem('user', encode(user));
+          localStorage.setItem('token', res.data.result.token)
           window.location.href = '/'
+        } else {
+          alert(res.data.message)
         }
       })
       .catch((err) => console.log(err))

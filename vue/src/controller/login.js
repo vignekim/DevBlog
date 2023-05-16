@@ -16,8 +16,6 @@ const methods = {
     const url = process.env.VUE_APP_BASEURL + '/User/Login'
     axios.post(url, this.user)
       .then((res) => {
-        //console.log(res)
-
         if(res.data.state) {
           const user = {
             name: res.data.result.name,

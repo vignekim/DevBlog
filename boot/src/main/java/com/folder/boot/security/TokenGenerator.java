@@ -58,7 +58,7 @@ public class TokenGenerator {
     ResponseResult responseResult = new ResponseResult();
     responseResult.setState(false);
     // 데이터베이스에서 사용자 검색 param(email, pwd) -> result(no, name)
-    user = User.builder().no(1).name("폴더").build();
+    // user = User.builder().no(1).name("폴더").build();
     if(user.getNo() > 0) {
       JwtBuilder token = Jwts.builder()
         .setHeader(createHeader())
