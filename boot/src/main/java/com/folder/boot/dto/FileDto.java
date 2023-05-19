@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class File {
+public class FileDto {
 
   private int no;
   private String name;
@@ -21,6 +21,7 @@ public class File {
   private String url;
   private String saveName;
   private String savePath;
+  private String mediaType;
   private boolean del;
   private LocalDateTime regDate;
   private LocalDateTime alterDate;

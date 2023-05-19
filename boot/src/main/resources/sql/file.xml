@@ -4,6 +4,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.folder.boot.mapper.FileMapper">
 
+<insert id="userFile" parameterType="com.folder.boot.dto.FileDto">
+  INSERT INTO FILE
+    (name, extension, url, saveName, savePath, mediaType)
+  VALUE
+    (#{name}, #{extension}, #{url}, #{saveName}, #{savePath}, #{mediaType})
 
+  <selectKey keyProperty="no" resultType="int" order="AFTER">
+    SELECT LAST_INSERT_ID() AS no
+  </selectKey>
+</insert>
+
+<update id="user" parameterType="com.folder.boot.dto.User">
+  UPDATE USER SET
+    fileNo = #{fileNo}
+  WHERE no = #{no};
+</update>
+
+<select id="userById" parameterType="int" resultType="com.folder.boot.dto.FileDto">
+  SELECT *
+    FROM FILE
+   WHERE del = false
+     and no = #{no}
+</select>
 
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.folder.boot.dto.EditorResult;
+import com.folder.boot.dto.FileDto;
 import com.folder.boot.dto.ResponseResult;
 import com.folder.boot.dto.EditorFile;
 
@@ -54,13 +55,30 @@ public class FileComponent {
     }
   }
 
+  public ResponseEntity<?> userById(FileDto fileDto) {
+    try {
+      if(fileDto != null) {
+        String path = getRootPath().concat("/upload/User/").concat(fileDto.getSaveName());
+        File file = new File(path);
+        return ResponseEntity.ok()
+          .contentLength(file.length())
+          .contentType(MediaType.parseMediaType(fileDto.getMediaType()))
+          .body(new InputStreamResource(new FileInputStream(file)));
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return ResponseEntity.notFound().build();
+  }
+
   public ResponseResult user(MultipartFile multipartFile) {
     ResponseResult result = new ResponseResult();
     result.setState(false);
 
-    String name = setName();
-    String url = lastPath.concat("/User").concat("/").concat(name);
+    String newName = setName();
+    String url = lastPath.concat("/User").concat("/").concat(newName);
     String newPath = getRootPath().concat(url);
+    String mediaType = multipartFile.getContentType();
 
     if(!multipartFile.isEmpty()){
       File file = new File(newPath);
@@ -69,11 +87,40 @@ public class FileComponent {
         multipartFile.transferTo(file);
 
         resultMap = new HashMap<String, Object>();
-        resultMap.put("url", name);
-        resultMap.put("mediaType", multipartFile.getContentType());
+        resultMap.put("saveName", newName);
+        resultMap.put("mediaType", mediaType);
 
-        result.setState(true);
         result.setResult(resultMap);
+        result.setState(true);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    return result;
+  }
+
+  public ResponseResult userFile(MultipartFile multipartFile) {
+    ResponseResult result = new ResponseResult();
+    result.setState(false);
+
+    String name = getName(multipartFile);
+    String newName = setName();
+    String extension = getExtension(multipartFile);
+    String url = lastPath.concat("/User").concat("/").concat(newName);
+    String newPath = getRootPath().concat(url);
+    String mediaType = multipartFile.getContentType();
+    FileDto fileDto = FileDto.builder()
+      .name(name).extension(extension).url(url).saveName(newName)
+      .savePath(newPath).mediaType(mediaType).build();
+
+    if(!multipartFile.isEmpty()){
+      File file = new File(newPath);
+      if(!file.exists()){file.mkdirs();}
+      try {
+        multipartFile.transferTo(file);
+        result.setResult(fileDto);
+        result.setState(true);
       } catch (IOException e) {
         e.printStackTrace();
       }

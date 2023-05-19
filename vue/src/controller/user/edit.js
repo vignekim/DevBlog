@@ -9,7 +9,7 @@ const data = () => {
     name: '',
     email: '',
     pwd: '',
-    img: '/account.svg'
+    img: ''
   }
   return resultData
 }
@@ -40,12 +40,17 @@ const methods = {
     const formData = new FormData()
     formData.append("file", file)
     const url = process.env.VUE_APP_BASEURL + '/FileUpload/User'
-    axios.post(url, formData)
+    useAxios.post(url, formData)
       .then((res) => {
         if(res.data.state) {
-          const path = `${url}?url=${res.data.result.url}&mediaType=${res.data.result.mediaType}`
+          console.log(res.data.result)
+          this.user.img = `${url}/${res.data.result.no}`
+          // http://localhost:8080/FileUpload/User/3
+          /*
+          const path = `${url}?url=${res.data.result.saveName}&mediaType=${res.data.result.mediaType}`
           const imagePreview = document.querySelector('.user');
           imagePreview.setAttribute('src', path)
+          */
         }
       })
       .catch((error) => console.log(error))
@@ -98,7 +103,18 @@ const useController = {
         .then((res) => {
           if(res.data.state) {
             this.user = res.data.result
-            this.user.img = '/account.svg'
+
+            if(res.data.result.fileNo) {
+              const fileUrl = process.env.VUE_APP_BASEURL + '/FileUpload/User'
+              this.user.img = `${fileUrl}/${res.data.result.fileNo}`
+            } else {
+              this.user.img = '/account.svg'
+            }
+
+          } else {
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.location.href = '/'
           }
         })
         .catch((err) => console.log(err))

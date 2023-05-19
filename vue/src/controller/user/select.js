@@ -41,7 +41,12 @@ const useController = {
           //console.log(res)
           if(res.data.state) {
             this.user = res.data.result
-            this.user.img = '/account.svg'
+            if(res.data.result.fileNo) {
+              const fileUrl = process.env.VUE_APP_BASEURL + '/FileUpload/User'
+              this.user.img = `${fileUrl}/${res.data.result.fileNo}`
+            } else {
+              this.user.img = '/account.svg'
+            }
           } else {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
