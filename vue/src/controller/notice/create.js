@@ -13,13 +13,23 @@ const data = () => {
 const methods = {
   save() {
     const url = process.env.VUE_APP_BASEURL + '/Notice/save'
-    axios.put(url, this.notice)
-      .then((res) => {
-        if(res.data.state) {
-          router.push({ name: 'DetailNotice', params: {noticeNo: res.data.result.no} })
-        }
-      })
-      .catch((err) => console.log(err))
+
+    this.editor.save().then((data) => {
+      if(data.blocks.length > 0) {
+        this.notice.content = encode(data)
+        console.log(this.notice)
+
+        axios.put(url, this.notice)
+        .then((res) => {
+          if(res.data.state) {
+            router.push({ name: 'DetailNotice', params: {noticeNo: res.data.result.no} })
+          }
+        })
+        .catch((err) => console.log(err))
+
+      }
+    }).catch((error) => console.log(error))
+
   },
   cancel() {
     router.push({ name: 'HomeView' })

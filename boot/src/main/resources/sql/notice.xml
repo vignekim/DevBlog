@@ -4,6 +4,42 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.folder.boot.mapper.NoticeMapper">
 
+<insert id="save" parameterType="com.folder.boot.dto.Notice">
+  INSERT INTO notice
+			( `title`, `desc`, `content`, `userNo` )
+		VALUE
+			(#{title}, #{desc}, #{content}, #{userNo})
 
+  <selectKey keyProperty="no" resultType="int" order="AFTER">
+    SELECT LAST_INSERT_ID() AS no
+  </selectKey>
+</insert>
+
+<select id="findByAll" resultType="com.folder.boot.dto.Notice">
+  SELECT *
+    FROM notice
+   WHERE del = false
+</select>
+
+<select id="findById" parameterType="com.folder.boot.dto.Notice" resultType="com.folder.boot.dto.Notice">
+  SELECT *
+    FROM notice
+   WHERE del = false
+     and no = #{no}
+</select>
+
+<update id="editById" parameterType="com.folder.boot.dto.Notice">
+  UPDATE notice SET
+		`title` = #{title},
+    `desc` = #{desc},
+    `content` = #{content}
+	 WHERE no = #{no}
+</update>
+
+<update id="deleteById" parameterType="Integer">
+  UPDATE notice SET
+	   del = true
+	 WHERE no = #{no}
+</update>
 
 </mapper>

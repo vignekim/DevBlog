@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.folder.boot.component.NoticeComponent;
 import com.folder.boot.dto.Notice;
 import com.folder.boot.dto.ResponseResult;
+import com.folder.boot.service.NoticeService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,30 +21,31 @@ import com.folder.boot.dto.ResponseResult;
 public class NoticeController {
 
   @Autowired NoticeComponent noticeComponent;
+  @Autowired NoticeService noticeService;
 
   @PostMapping("/List")
   public ResponseResult list() {
-    return noticeComponent.list();
+    return noticeService.findByAll();
   }
 
   @PostMapping("/findById")
   public ResponseResult findById(@RequestBody Notice notice) {
-    return noticeComponent.findById(notice);
+    return noticeService.findById(notice);
   }
 
   @PostMapping("/editById")
   public ResponseResult editById(@RequestBody Notice notice) {
-    return noticeComponent.result(true);
+    return noticeService.editById(notice);
   }
 
   @DeleteMapping("/deleteById")
   public ResponseResult deleteById(@RequestParam("no") int no) {
-    return noticeComponent.result(true);
+    return noticeService.deleteById(no);
   }
 
   @PutMapping("/save")
   public ResponseResult save(@RequestBody Notice notice) {
-    return noticeComponent.save(notice);
+    return noticeService.save(notice);
   }
 
 }
