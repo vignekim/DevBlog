@@ -10,18 +10,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.folder.boot.component.NoticeComponent;
+//import com.folder.boot.component.NoticeComponent;
 import com.folder.boot.dto.Notice;
 import com.folder.boot.dto.ResponseResult;
 import com.folder.boot.service.NoticeService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/Notice")
 public class NoticeController {
 
-  @Autowired NoticeComponent noticeComponent;
+  //@Autowired NoticeComponent noticeComponent;
   @Autowired NoticeService noticeService;
+
+  @PutMapping("/save")
+  public ResponseResult save(@RequestBody Notice notice, HttpServletRequest request) {
+    return noticeService.save(notice, request);
+  }
 
   @PostMapping("/List")
   public ResponseResult list() {
@@ -41,11 +48,6 @@ public class NoticeController {
   @DeleteMapping("/deleteById")
   public ResponseResult deleteById(@RequestParam("no") int no) {
     return noticeService.deleteById(no);
-  }
-
-  @PutMapping("/save")
-  public ResponseResult save(@RequestBody Notice notice) {
-    return noticeService.save(notice);
   }
 
 }

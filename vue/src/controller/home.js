@@ -59,10 +59,10 @@ const useController = {
     database()
       .then((res) => {
         if(res.state) {
-          res.result.forEach(row => {
-            row.img = (row.no % 2 == 1)? '/account.svg' : 'logo.png'
+          res.result.forEach((row, index) => {
+            row.img = (index % 2 == 1)? '/account.svg' : 'logo.png'
             row.count = 0
-            this.list[row.no] = row
+            this.list[index] = row
           });
           if(res.result.length > 0) this.state = false
         }

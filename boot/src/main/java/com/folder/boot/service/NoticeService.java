@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import com.folder.boot.dao.NoticeDao;
 import com.folder.boot.dto.Notice;
 import com.folder.boot.dto.ResponseResult;
+import com.folder.boot.dto.User;
 import com.folder.boot.security.TokenGenerator;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class NoticeService {
@@ -15,14 +18,19 @@ public class NoticeService {
   @Autowired TokenGenerator tokenGenerator;
   private ResponseResult responseResult;
 
-  public ResponseResult save(Notice notice) {
+  public ResponseResult save(Notice notice, HttpServletRequest request) {
     responseResult = new ResponseResult();
     responseResult.setState(false);
-    notice.setUserNo(1);
-    notice = noticeDao.save(notice);
-    if(notice.getNo() > 0) {
-      responseResult.setState(true);
-      responseResult.setResult(notice);
+    ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
+    if(tokenResult.isState()){
+      User user = (User) tokenResult.getResult();
+      notice.setUserNo(user.getNo());
+      //notice.setUserNo(1);
+      notice = noticeDao.save(notice);
+      if(notice.getNo() > 0) {
+        responseResult.setState(true);
+        responseResult.setResult(notice);
+      }
     }
     return responseResult;
   }

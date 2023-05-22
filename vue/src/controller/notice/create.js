@@ -3,6 +3,7 @@ import axios from 'axios'
 import EditorJS from '@editorjs/editorjs'
 import { useWrite } from '@/editor'
 import { decode, encode } from '@/util/Base64'
+import useAxios from '@/util/UseAxios'
 
 const data = () => {
   const resultData = {}
@@ -17,9 +18,8 @@ const methods = {
     this.editor.save().then((data) => {
       if(data.blocks.length > 0) {
         this.notice.content = encode(data)
-        console.log(this.notice)
 
-        axios.put(url, this.notice)
+        useAxios.put(url, this.notice)
         .then((res) => {
           if(res.data.state) {
             router.push({ name: 'DetailNotice', params: {noticeNo: res.data.result.no} })
