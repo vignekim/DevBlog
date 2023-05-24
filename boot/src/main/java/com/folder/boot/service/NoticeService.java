@@ -47,8 +47,13 @@ public class NoticeService {
     responseResult.setState(false);
     notice = noticeDao.findById(notice);
     if(notice != null) {
-      responseResult.setState(true);
-      responseResult.setResult(notice);
+
+      int state = noticeDao.cnt(notice);
+      if(state > 0) {
+        responseResult.setState(true);
+        responseResult.setResult(notice);
+      }
+
     }
     return responseResult;
   }

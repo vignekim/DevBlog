@@ -16,9 +16,18 @@
 </insert>
 
 <select id="findByAll" resultType="com.folder.boot.dto.Notice">
-  SELECT *
-    FROM notice
-   WHERE del = false
+  SELECT n.*,
+       u.fileNo,
+       nc.cnt
+  FROM NOTICE as n
+  INNER JOIN USER as u
+  ON (n.userNo = u.no)
+  LEFT OUTER JOIN (SELECT noticeNo, COUNT(*) as cnt
+              FROM NOTICE_CNT
+                GROUP BY noticeNo) as nc
+  ON (n.no = nc.noticeNo)
+  WHERE n.del = FALSE
+  AND   u.del = FALSE
 </select>
 
 <select id="findById" parameterType="com.folder.boot.dto.Notice" resultType="com.folder.boot.dto.Notice">
@@ -41,5 +50,12 @@
 	   del = true
 	 WHERE no = #{no}
 </update>
+
+<insert id="cnt" parameterType="com.folder.boot.dto.Notice">
+  INSERT INTO NOTICE_CNT
+			( `noticeNo`, `userNo` )
+		VALUE
+			(#{no}, #{userNo})
+</insert>
 
 </mapper>

@@ -57,3 +57,5 @@ java --version
 > * [25. User Profile Picture 적용](https://youtu.be/j75a919FBg8)
 > * [26. Notice 소개](https://youtu.be/M98ZbhtWi9w)
 > * [27. Notice Create 적용](https://youtu.be/2Fnt9chOrD4)
+> * [28. Notice Profile Picture 적용](https://youtu.be/iTVda7ENpSU)
+> * [29. Notice Select Count 적용](https://youtu.be/lh1rKLeGpUU)

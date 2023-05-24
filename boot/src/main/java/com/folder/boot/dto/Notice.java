@@ -23,5 +23,7 @@ public class Notice {
   private LocalDateTime regDate;
   private LocalDateTime alterDate;
   private int userNo;
+  private int fileNo;
+  private int cnt;
 
 }

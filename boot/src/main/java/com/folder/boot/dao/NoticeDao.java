@@ -37,4 +37,8 @@ public class NoticeDao {
     return noticeMapper.deleteById(no);
   }
 
+  public int cnt(Notice notice) {
+    return noticeMapper.cnt(notice);
+  }
+
 }

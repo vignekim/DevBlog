@@ -14,5 +14,6 @@ public interface NoticeMapper {
   public Notice findById(Notice notice);
   public int editById(Notice notice);
   public int deleteById(int no);
+  public int cnt(Notice notice);
 
 }

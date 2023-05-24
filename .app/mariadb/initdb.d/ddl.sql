@@ -42,4 +42,15 @@ INSERT INTO user
 VALUE
 	('folder', 'folder@email.com', '1234');
 
+INSERT INTO user
+	(name, email, pwd)
+VALUE
+	('사용자', 'user@email.com', '1234');
+
+CREATE OR REPLACE TABLE NOTICE_CNT (
+	`noticeNo`	INT				NOT NULL,
+	`userNo`		INT				NOT NULL,
+	`regDate`		DATETIME	NOT NULL	DEFAULT NOW()
+);
+
 commit;
