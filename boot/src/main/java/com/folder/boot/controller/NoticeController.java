@@ -36,14 +36,25 @@ public class NoticeController {
   }
 
   @PostMapping("/findById")
-  public ResponseResult findById(@RequestBody Notice notice) {
-    return noticeService.findById(notice);
+  public ResponseResult findById(@RequestBody Notice notice, HttpServletRequest request) {
+    return noticeService.findById(notice, request);
   }
+/*
+public ResponseResult findById(@RequestBody Notice notice) {
+  return noticeService.findById(notice);
+}
+*/
 
   @PostMapping("/editById")
+  public ResponseResult editById(@RequestBody Notice notice, HttpServletRequest request) {
+    return noticeService.editById(notice, request);
+  }
+/*
   public ResponseResult editById(@RequestBody Notice notice) {
     return noticeService.editById(notice);
   }
+ */
+
 
   @DeleteMapping("/deleteById")
   public ResponseResult deleteById(@RequestParam("no") int no) {

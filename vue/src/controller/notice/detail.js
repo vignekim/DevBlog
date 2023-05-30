@@ -17,7 +17,7 @@ const database = (noticeNo) => {
   return new Promise((resolve, reject) => {
     const url = process.env.VUE_APP_BASEURL + '/Notice/findById'
     const params = {no: noticeNo}
-    axios.post(url, params)
+    useAxios.post(url, params)
       .then((res) => resolve(res.data))
       .catch((err) => reject(err))
   })
@@ -34,7 +34,7 @@ const methods = {
         if(data.blocks.length > 0) {
 
           this.notice.content = encode(data)
-          axios.post(url, this.notice)
+          useAxios.post(url, this.notice)
           .then((res) => {
             if(res.data.state) {
               //this.editorJson = encode(data)
@@ -75,9 +75,9 @@ const useController = {
     database(this.$route.params.noticeNo)
       .then((res) => {
         if(res.state) {
-          this.change.auth = false
-          this.notice = res.result
-          useRead.data = decode(res.result.content)
+          this.change.auth = res.result.auth
+          this.notice = res.result.notice
+          useRead.data = decode(res.result.notice.content)
           this.editor = new EditorJS(useRead)
         }
         else this.cancel()

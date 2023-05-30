@@ -1,5 +1,8 @@
 package com.folder.boot.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +61,40 @@ public class NoticeService {
     return responseResult;
   }
 
+  public ResponseResult findById(Notice notice, HttpServletRequest request) {
+    responseResult = new ResponseResult();
+    responseResult.setState(false);
+    notice = noticeDao.findById(notice);
+    if(notice != null) {
+
+      ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
+      Notice tokenNotice = new Notice();
+      tokenNotice.setNo(notice.getNo());
+      if(tokenResult.isState()){
+        User user = (User) tokenResult.getResult();
+        tokenNotice.setUserNo(user.getNo());
+      } else {
+        tokenNotice.setUserNo(0);
+      }
+
+      int state = noticeDao.cnt(tokenNotice);
+      if(state > 0) {
+        responseResult.setState(true);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("notice", notice);
+        resultMap.put("auth", true);
+        if(tokenNotice.getUserNo() > 0) {
+          if(tokenNotice.getUserNo() == notice.getUserNo()) {
+            resultMap.put("auth", false);
+          }
+        }
+        responseResult.setResult(resultMap);
+      }
+
+    }
+    return responseResult;
+  }
+
   public ResponseResult editById(Notice notice) {
     responseResult = new ResponseResult();
     int state = noticeDao.editById(notice);
@@ -68,6 +105,29 @@ public class NoticeService {
       responseResult.setState(false);
       responseResult.setResult("게시판 글 작성이 실패 하였습니다.");
     }
+    return responseResult;
+  }
+
+  public ResponseResult editById(Notice notice, HttpServletRequest request) {
+    responseResult = new ResponseResult();
+
+    ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
+    if(tokenResult.isState()){
+      User user = (User) tokenResult.getResult();
+
+      if(user.getNo() == notice.getUserNo()) {
+        int state = noticeDao.editById(notice);
+        if(state == 1) {
+          responseResult.setState(true);
+          responseResult.setResult("게시판 글 작성이 성공 하였습니다.");
+        } else {
+          responseResult.setState(false);
+          responseResult.setResult("게시판 글 작성이 실패 하였습니다.");
+        }
+      }
+
+    }
+
     return responseResult;
   }
 
