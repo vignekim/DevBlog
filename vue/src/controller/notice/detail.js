@@ -3,11 +3,12 @@ import axios from 'axios'
 import EditorJS from '@editorjs/editorjs'
 import { useRead } from '@/editor'
 import { decode, encode } from '@/util/Base64'
+import useAxios from '@/util/UseAxios'
 
 const data = () => {
   const resultData = {}
   resultData.notice = {title: '', desc: ''}
-  resultData.change = {txt: '수정', active: true},
+  resultData.change = {txt: '수정', active: true, auth: true},
   resultData.editor = {}
   return resultData
 }
@@ -28,11 +29,21 @@ const methods = {
       this.editor.readOnly.toggle()
       this.change = {txt: '저장', active: false}
     } else {
+      const url = process.env.VUE_APP_BASEURL + '/Notice/editById'
       this.editor.save().then((data) => {
         if(data.blocks.length > 0) {
-          this.editorJson = encode(data)
-          this.editor.readOnly.toggle()
-          this.change = {txt: '수정', active: true}
+
+          this.notice.content = encode(data)
+          axios.post(url, this.notice)
+          .then((res) => {
+            if(res.data.state) {
+              //this.editorJson = encode(data)
+              this.editor.readOnly.toggle()
+              this.change = {txt: '수정', active: true}
+            }
+          })
+          .catch((err) => console.log(err))
+
         }
       }).catch((error) => console.log(error))
     }
@@ -64,6 +75,7 @@ const useController = {
     database(this.$route.params.noticeNo)
       .then((res) => {
         if(res.state) {
+          this.change.auth = false
           this.notice = res.result
           useRead.data = decode(res.result.content)
           this.editor = new EditorJS(useRead)

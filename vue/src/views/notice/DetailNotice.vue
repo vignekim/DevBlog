@@ -11,10 +11,10 @@
     <div id="editorjs"></div>
     <div class="d-flex">
       <div class="flex-fill">
-        <button type="button" class="btn" @click="editorChange">{{change.txt}}</button>
+        <button type="button" class="btn" @click="editorChange" :disabled="change.auth">{{change.txt}}</button>
       </div>
       <div class="flex-fill">
-        <button type="button" class="btn" @click="del">삭제</button>
+        <button type="button" class="btn" @click="del" :disabled="change.auth">삭제</button>
       </div>
       <div class="flex-fill">
         <button type="button" class="btn" @click="cancel">취소</button>

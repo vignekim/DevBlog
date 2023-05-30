@@ -5,7 +5,7 @@
 <mapper namespace="com.folder.boot.mapper.UserMapper">
 
 <select id="login" parameterType="com.folder.boot.dto.User" resultType="com.folder.boot.dto.User">
-  SELECT no, name
+  SELECT no, name, email
     FROM user
    WHERE del = false
      and email = #{email}

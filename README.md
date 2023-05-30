@@ -59,3 +59,4 @@ java --version
 > * [27. Notice Create 적용](https://youtu.be/2Fnt9chOrD4)
 > * [28. Notice Profile Picture 적용](https://youtu.be/iTVda7ENpSU)
 > * [29. Notice Select Count 적용](https://youtu.be/lh1rKLeGpUU)
+> * [30. Notice Select 적용](https://youtu.be/LOch84wt1Wg)

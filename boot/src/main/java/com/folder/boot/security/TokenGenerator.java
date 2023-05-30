@@ -140,7 +140,7 @@ public class TokenGenerator {
       .setIssuer("DevBlog")
       .setSubject("User")
       .setAudience(keyUtils.encodeContent(setContent(user)))
-      .setExpiration(createExpiredDate(120))
+      .setExpiration(createExpiredDate(240))
       .setIssuedAt(Calendar.getInstance().getTime());
   }
 

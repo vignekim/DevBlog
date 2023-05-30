@@ -86,6 +86,7 @@ public class UserService {
     ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
     if(tokenResult.isState()){
       User tokenUser = (User) tokenResult.getResult();
+      System.out.println(tokenUser);
       if(tokenUser.getNo() == user.getNo() && tokenUser.getEmail().equals(user.getEmail())) {
         int state = userDao.editById(user);
         if(state == 1) {

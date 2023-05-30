@@ -59,6 +59,7 @@ const methods = {
     const url = process.env.VUE_APP_BASEURL + '/User/editById'
     useAxios.post(url, this.user)
       .then((res) => {
+        console.log(res)
         if(res.data.state) {
           router.push({ name: 'SelectView' })
         } else {
