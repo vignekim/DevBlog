@@ -51,7 +51,7 @@ const methods = {
   del() {
     const url = process.env.VUE_APP_BASEURL + '/Notice/deleteById'
     const params = {no: this.notice.no}
-    axios.delete(url, {params})
+    useAxios.delete(url, {params})
       .then((res) => {
         if(res.data.state) {
           this.cancel()

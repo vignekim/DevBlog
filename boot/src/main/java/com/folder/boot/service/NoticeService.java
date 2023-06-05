@@ -110,6 +110,7 @@ public class NoticeService {
 
   public ResponseResult editById(Notice notice, HttpServletRequest request) {
     responseResult = new ResponseResult();
+    responseResult.setState(false);
 
     ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
     if(tokenResult.isState()){
@@ -121,7 +122,6 @@ public class NoticeService {
           responseResult.setState(true);
           responseResult.setResult("게시판 글 작성이 성공 하였습니다.");
         } else {
-          responseResult.setState(false);
           responseResult.setResult("게시판 글 작성이 실패 하였습니다.");
         }
       }
@@ -141,6 +141,30 @@ public class NoticeService {
       responseResult.setState(false);
       responseResult.setResult("게시판 글 삭제가 실패 하였습니다.");
     }
+    return responseResult;
+  }
+
+  public ResponseResult deleteById(int no, HttpServletRequest request) {
+    responseResult = new ResponseResult();
+    responseResult.setState(false);
+
+    ResponseResult tokenResult = tokenGenerator.getJwtInfo(request);
+    if(tokenResult.isState()){
+      User user = (User) tokenResult.getResult();
+      Notice notice = noticeDao.findById(Notice.builder().no(no).build());
+
+      if(user.getNo() == notice.getUserNo()) {
+        int state = noticeDao.deleteById(no);
+        if(state == 1) {
+          responseResult.setState(true);
+          responseResult.setResult("게시판 글 삭제가 성공 하였습니다.");
+        } else {
+          responseResult.setResult("게시판 글 삭제가 실패 하였습니다.");
+        }
+      }
+
+    }
+
     return responseResult;
   }
 

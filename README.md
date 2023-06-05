@@ -61,3 +61,4 @@ java --version
 > * [29. Notice Select Count 적용](https://youtu.be/lh1rKLeGpUU)
 > * [30. Notice Select 적용](https://youtu.be/LOch84wt1Wg)
 > * [31. Notice Update 적용](https://youtu.be/FNWPcWysQCA)
+> * [32. Notice Delete 적용](https://youtu.be/SvHO7PK_f0M)

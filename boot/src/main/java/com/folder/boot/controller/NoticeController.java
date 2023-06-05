@@ -55,10 +55,14 @@ public ResponseResult findById(@RequestBody Notice notice) {
   }
  */
 
-
   @DeleteMapping("/deleteById")
+  public ResponseResult deleteById(@RequestParam("no") int no, HttpServletRequest request) {
+    return noticeService.deleteById(no, request);
+  }
+/*
   public ResponseResult deleteById(@RequestParam("no") int no) {
     return noticeService.deleteById(no);
   }
+*/
 
 }
